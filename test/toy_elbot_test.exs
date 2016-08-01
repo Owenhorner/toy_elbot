@@ -1,0 +1,8 @@
+defmodule ToyElbotTest do
+  use ExUnit.Case
+  doctest ToyElbot
+
+  test "the truth" do
+    assert 1 + 1 == 2
+  end
+end
