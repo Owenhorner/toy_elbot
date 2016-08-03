@@ -12,7 +12,7 @@ defmodule ToyElbot.Mixfile do
   end
 
   def escript do
-    [main_module: ToyElbot.Interface]
+    [main_module: ToyElbot]
   end
 
   # Configuration for the OTP application
