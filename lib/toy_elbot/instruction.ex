@@ -1,17 +1,23 @@
 defmodule ToyElbot.Instruction do
-  def execute(:place, [x_position, y_position, direction]) do
+  alias ToyElbot.ControlSystem
+
+  def execute(:place, coords) do
+    ControlSystem.place(coords)
   end
 
   def execute(:right, _) do
+    ControlSystem.turn_right
   end
 
   def execute(:left, _) do
+    ControlSystem.turn_left
   end
 
   def execute(:move, _) do
   end
 
   def execute(:report, _) do
+    ControlSystem.report
   end
 
   def execute(:exit, _) do
