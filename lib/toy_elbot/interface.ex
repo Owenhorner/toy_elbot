@@ -1,12 +1,12 @@
 defmodule ToyElbot.Interface do
   alias ToyElbot.Instruction
 
-  def main(_args) do
+  def start do
+    IO.puts input_text
     read
   end
 
   def read do
-    IO.puts input_text
     case IO.read(:stdio, :line) do
       :eof -> :ok
       {:error, reason} -> IO.puts "Error: #{reason}"
@@ -14,12 +14,11 @@ defmodule ToyElbot.Interface do
         String.split(data, [" ", ",", "\n"])
         |> Enum.reject(fn(x) -> x == "" end)
         |> get_args
-        #IO.write(:stdio, data)
         read
     end
   end
 
-  def get_args(input) do
+  defp get_args(input) do
     Instruction.execute(
       String.to_atom(String.downcase(Enum.at(input, 0))),
       Enum.slice(input, 1, 3)
