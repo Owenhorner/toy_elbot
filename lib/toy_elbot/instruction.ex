@@ -14,6 +14,7 @@ defmodule ToyElbot.Instruction do
   end
 
   def execute(:move, _) do
+    ControlSystem.move
   end
 
   def execute(:report, _) do
