@@ -8,7 +8,20 @@ defmodule ToyElbot.ControlSystem do
   end
 
   def place([x, y, direction]) do
-    GenServer.cast(:elbot, {:place, x, y, direction})
+    cond do
+      valid_placement?(x, y, direction) -> GenServer.cast(:elbot, {:place, x, y, direction})
+      true -> :placement_error
+    end
+  end
+
+  defp valid_placement?(x,y,direction) do
+    String.match?(x, ~r/\d/) &&
+    String.match?(y, ~r/\d/) &&
+    Enum.member?(directions, String.to_atom(String.downcase(direction)))
+  end
+
+  def place (_) do
+    :placement_error
   end
 
   def turn_right() do
