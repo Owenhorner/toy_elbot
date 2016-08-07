@@ -27,6 +27,10 @@ defmodule ToyElbot.ControlSystem do
     display_position(GenServer.call(:elbot, {:report}))
   end
 
+  def kill_elbot() do
+    GenServer.stop(:elbot)
+  end
+
   ### Server functions ###
 
   def init([]) do

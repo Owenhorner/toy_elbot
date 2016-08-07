@@ -31,10 +31,10 @@ defmodule ToyElbot.Interface do
 
   defp input_text do
     "PLACE X,Y,F to begin,
-    RIGHT to turn your robot RIGHT,
-    LEFT to turn your robot LEFT,
-    MOVE to move your robot in the direction is facing,
-    REPORT to get the co-ordinates of your robot,
-    EXIT to turn off your robot."
+RIGHT to turn your robot RIGHT,
+LEFT to turn your robot LEFT,
+MOVE to move your robot in the direction is facing,
+REPORT to get the co-ordinates of your robot,
+EXIT to turn off your robot."
   end
 end

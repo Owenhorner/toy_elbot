@@ -22,7 +22,8 @@ defmodule ToyElbot.Instruction do
   end
 
   def execute(:exit, _) do
-    #teardown everything and exit program
+    valid_execution?(ControlSystem.report)
+    exit(:shutdown)
   end
 
   def execute(_args, _coords) do

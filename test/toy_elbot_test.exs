@@ -30,15 +30,5 @@ defmodule ToyElbotTest do
     ToyElbot.Interface.send_command("move")
 
     assert capture_io(fn -> ToyElbot.Interface.send_command("report") end) == "3, 3, north\n"
-
   end
 end
-"""
-PLACE 1,2,EAST
-MOVE
-MOVE
-LEFT
-MOVE
-REPORT
-Output: 3,3,NORTH
-"""
