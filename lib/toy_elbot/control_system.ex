@@ -33,6 +33,10 @@ defmodule ToyElbot.ControlSystem do
     {:ok, %{x_position: nil, y_position: nil, direction: nil} }
   end
 
+  def init(state) do
+    {:ok, state}
+  end
+
   def handle_cast({:place, x, y, direction}, elbot) do
     {:noreply,
      place_elbot(elbot,
@@ -64,14 +68,14 @@ defmodule ToyElbot.ControlSystem do
     {:reply, elbot, elbot}
   end
 
-  defp turn_elbot(elbot, :left) do
+  defp turn_elbot(elbot, :right) do
     Map.put(elbot,
      :direction,
      Enum.at(directions,
       get_direction_index(:left, elbot) + 1))
   end
 
-  defp turn_elbot(elbot, :right) do
+  defp turn_elbot(elbot, :left) do
     Map.put(elbot,
      :direction,
      Enum.at(Enum.reverse(directions),

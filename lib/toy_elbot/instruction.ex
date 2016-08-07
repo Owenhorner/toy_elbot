@@ -2,29 +2,38 @@ defmodule ToyElbot.Instruction do
   alias ToyElbot.ControlSystem
 
   def execute(:place, coords) do
-    ControlSystem.place(coords)
+    valid_execution?(ControlSystem.place(coords))
   end
 
   def execute(:right, _) do
-    ControlSystem.turn_right
+    valid_execution?(ControlSystem.turn_right)
   end
 
   def execute(:left, _) do
-    ControlSystem.turn_left
+    valid_execution?(ControlSystem.turn_left)
   end
 
   def execute(:move, _) do
-    ControlSystem.move
+    valid_execution?(ControlSystem.move)
   end
 
   def execute(:report, _) do
-    ControlSystem.report
+    valid_execution?(ControlSystem.report)
   end
 
   def execute(:exit, _) do
+    #teardown everything and exit program
   end
 
   def execute(_args, _coords) do
     {:error, "Invalid Command"}
+  end
+
+  defp valid_execution?(:ok) do
+    {:ok, "command execution successful"}
+  end
+
+  defp valid_execution?(_) do
+    {:error, "Something went wrong"}
   end
 end

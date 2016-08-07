@@ -11,11 +11,15 @@ defmodule ToyElbot.Interface do
       :eof -> :ok
       {:error, reason} -> IO.puts "Error: #{reason}"
       data ->
-        String.split(data, [" ", ",", "\n"])
-        |> Enum.reject(fn(x) -> x == "" end)
-        |> get_args
+        send_command(data)
         read
     end
+  end
+
+  def send_command(data) do
+    String.split(data, [" ", ",", "\n"])
+    |> Enum.reject(fn(x) -> x == "" end)
+    |> get_args
   end
 
   defp get_args(input) do
@@ -26,11 +30,11 @@ defmodule ToyElbot.Interface do
   end
 
   defp input_text do
-"PLACE X,Y,F to begin,
-RIGHT to turn your robot RIGHT,
-LEFT to turn your robot LEFT,
-MOVE to move your robot in the direction is facing,
-REPORT to get the co-ordinates of your robot,
-EXIT to turn off your robot."
+    "PLACE X,Y,F to begin,
+    RIGHT to turn your robot RIGHT,
+    LEFT to turn your robot LEFT,
+    MOVE to move your robot in the direction is facing,
+    REPORT to get the co-ordinates of your robot,
+    EXIT to turn off your robot."
   end
 end
