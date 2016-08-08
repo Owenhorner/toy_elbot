@@ -16,13 +16,25 @@ defmodule ToyElbot.Interface do
     end
   end
 
+  def send_command("\n") do
+    IO.write("You must enter a command for elbot\n")
+  end
+
   def send_command(data) do
     String.split(data, [" ", ",", "\n"])
     |> Enum.reject(fn(x) -> x == "" end)
-    |> get_args
+    |> send_instruction_to_elbot
+    |> assess_results
   end
 
-  defp get_args(input) do
+  defp assess_results({:error, error_message}) do
+    IO.write("#{error_message}\n")
+  end
+
+  defp assess_results(_) do
+  end
+
+  defp send_instruction_to_elbot(input) do
     Instruction.execute(
       String.to_atom(String.downcase(Enum.at(input, 0))),
       Enum.slice(input, 1, 3)
