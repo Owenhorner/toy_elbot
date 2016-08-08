@@ -1,28 +1,33 @@
 defmodule ToyElbot.Instruction do
   alias ToyElbot.ControlSystem
+  alias ControlSystem.Move
+  alias ControlSystem.Place
+  alias ControlSystem.Turn
+  alias ControlSystem.Report
+  alias ControlSystem.Exit
 
   def execute(:place, coords) do
-    valid_execution?(ControlSystem.place(coords))
+    valid_execution?(Place.at(coords))
   end
 
   def execute(:right, _) do
-    valid_execution?(ControlSystem.turn_right)
+    valid_execution?(Turn.right)
   end
 
   def execute(:left, _) do
-    valid_execution?(ControlSystem.turn_left)
+    valid_execution?(Turn.left)
   end
 
   def execute(:move, _) do
-    valid_execution?(ControlSystem.move)
+    valid_execution?(Move.forward)
   end
 
   def execute(:report, _) do
-    valid_execution?(ControlSystem.report)
+    valid_execution?(Report.current_position)
   end
 
   def execute(:exit, _) do
-    valid_execution?(ControlSystem.report)
+    valid_execution?(Exit.kill_elbot)
     exit(:shutdown)
   end
 

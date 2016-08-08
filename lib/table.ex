@@ -5,4 +5,8 @@ defmodule Table do
      min_length: min_length,
      max_length: max_length}
   end
+
+  def directions() do
+    [:north, :east, :south, :west, :north]
+  end
 end
