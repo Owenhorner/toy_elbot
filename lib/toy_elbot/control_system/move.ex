@@ -4,19 +4,19 @@ defmodule ToyElbot.ControlSystem.Move do
   end
 
   def one_space(%{x_position: x, y_position: y, direction: :north}) do
-    %{x_position: x, y_position: step(y, 1, :max_length), direction: :north}
+    %ToyElbot{x_position: x, y_position: step(y, 1, :max_length), direction: :north}
   end
 
   def one_space(%{x_position: x, y_position: y, direction: :east}) do
-    %{x_position: step(x, 1, :max_width), y_position: y, direction: :east}
+    %ToyElbot{x_position: step(x, 1, :max_width), y_position: y, direction: :east}
   end
 
   def one_space(%{x_position: x, y_position: y, direction: :south}) do
-    %{x_position: x, y_position: step(y, -1, :min_length), direction: :south}
+    %ToyElbot{x_position: x, y_position: step(y, -1, :min_length), direction: :south}
   end
 
   def one_space(%{x_position: x, y_position: y, direction: :west}) do
-    %{x_position: step(x, -1, :min_width), y_position: y, direction: :west}
+    %ToyElbot{x_position: step(x, -1, :min_width), y_position: y, direction: :west}
   end
 
   defp step(position, size, edge) do
