@@ -16,6 +16,6 @@ defmodule ToyElbot.ControlSystem.Report do
   end
 
   defp display_position(elbot) do
-    IO.write("#{Map.get(elbot, :x_position)}, #{Map.get(elbot, :y_position)}, #{Map.get(elbot, :direction)}\n")
+    IO.write("#{elbot.x_position}, #{elbot.y_position}, #{elbot.direction}\n")
   end
 end
