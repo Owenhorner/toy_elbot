@@ -11,28 +11,33 @@ defmodule ToyElbot.Instruction do
   end
 
   def execute(:right, _) do
-    valid_execution?(Turn.right)
+    issue(&Turn.right/0)
   end
 
   def execute(:left, _) do
-    valid_execution?(Turn.left)
+    issue(&Turn.left/0)
   end
 
   def execute(:move, _) do
-    valid_execution?(Move.forward)
+    issue(&Move.forward/0)
   end
 
   def execute(:report, _) do
-    valid_execution?(Report.current_position)
+    issue(&Report.current_position/0)
   end
 
   def execute(:exit, _) do
-    valid_execution?(Exit.kill_elbot)
+    valid_execution?(Exit.now)
     exit(:shutdown)
   end
 
   def execute(_args, _coords) do
     {:error, "Invalid Command"}
+  end
+
+  defp issue(command) do
+    with {:ok, _} <- Report.elbot_placed?,
+    do: valid_execution?(command.())
   end
 
   defp valid_execution?(:ok) do

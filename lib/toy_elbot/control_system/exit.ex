@@ -1,5 +1,5 @@
-defmodule ToyElbot.ConstrolSystem.Exit do
-  def kill_elbot() do
+defmodule ToyElbot.ControlSystem.Exit do
+  def now() do
     GenServer.stop(:elbot)
   end
 end

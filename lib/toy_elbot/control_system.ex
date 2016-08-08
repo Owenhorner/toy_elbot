@@ -7,15 +7,11 @@ defmodule ToyElbot.ControlSystem do
 
   use GenServer
 
-  def start_link(state, opts \\ []) do
-    {:ok, _} = GenServer.start(__MODULE__, state, opts)
+  def start_link(state) do
+    {:ok, _} = GenServer.start(__MODULE__, state)
   end
 
   ### Server functions ###
-
-  def init([]) do
-    {:ok, %{x_position: nil, y_position: nil, direction: nil} }
-  end
 
   def init(state) do
     {:ok, state}
