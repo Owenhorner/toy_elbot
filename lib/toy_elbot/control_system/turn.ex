@@ -1,10 +1,10 @@
 defmodule ToyElbot.ControlSystem.Turn do
   def right() do
-    GenServer.cast(:elbot, {:turn_right})
+    {GenServer.cast(:elbot, {:turn_right}), "Successfully turned the elbot right"}
   end
 
   def left() do
-    GenServer.cast(:elbot, {:turn_left})
+    {GenServer.cast(:elbot, {:turn_left}), "Successfully turned the elbot left"}
   end
 
   def turn_elbot(elbot, :right) do

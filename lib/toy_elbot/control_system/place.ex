@@ -3,7 +3,8 @@ defmodule ToyElbot.ControlSystem.Place do
 
   def at([x, y, direction]) do
     cond do
-      valid_placement?(x, y, direction) -> GenServer.cast(:elbot, {:place, x, y, direction})
+      valid_placement?(x, y, direction) ->
+        {GenServer.cast(:elbot, {:place, x, y, direction}), "Successfully placed elbot"}
       true -> :placement_error
     end
   end

@@ -7,7 +7,7 @@ defmodule ToyElbot.Instruction do
   alias ControlSystem.Exit
 
   def execute(:place, coords) do
-    valid_execution?(Place.at(coords))
+    Place.at(coords)
   end
 
   def execute(:right, _) do
@@ -27,7 +27,7 @@ defmodule ToyElbot.Instruction do
   end
 
   def execute(:exit, _) do
-    valid_execution?(Exit.now)
+    Exit.now
     exit(:shutdown)
   end
 
@@ -37,14 +37,6 @@ defmodule ToyElbot.Instruction do
 
   defp issue(command) do
     with {:ok, _} <- Report.elbot_placed?,
-    do: valid_execution?(command.())
-  end
-
-  defp valid_execution?(:ok) do
-    {:ok, "command execution successful"}
-  end
-
-  defp valid_execution?(_) do
-    {:error, "Something went wrong"}
+    do: command.()
   end
 end
