@@ -9,22 +9,21 @@ defmodule ToyElbot.InstructionTest do
   end
 
   test "execute a report" do
-    assert ToyElbot.Instruction.execute(:report, []) == {:ok, "command execution successful"}
     assert capture_io(fn -> ToyElbot.Instruction.execute(:report, []) end) == "1, 1, north\n"
   end
 
   test "execute a place" do
-    assert ToyElbot.Instruction.execute(:place, ["3","2","west"]) == {:ok, "command execution successful"}
+    assert ToyElbot.Instruction.execute(:place, ["3","2","west"]) == {:ok, "Successfully placed elbot"}
     assert capture_io(fn -> ToyElbot.Instruction.execute(:report, []) end) == "3, 2, west\n"
   end
 
   test "execute a right turn" do
-    assert ToyElbot.Instruction.execute(:right, []) == {:ok, "command execution successful"}
+    assert ToyElbot.Instruction.execute(:right, []) == {:ok, "Successfully turned the elbot right"}
     assert capture_io(fn -> ToyElbot.Instruction.execute(:report, []) end) == "1, 1, east\n"
   end
 
   test "execute a left turn" do
-    assert ToyElbot.Instruction.execute(:left, []) == {:ok, "command execution successful"}
+    assert ToyElbot.Instruction.execute(:left, []) == {:ok, "Successfully turned the elbot left"}
     assert capture_io(fn -> ToyElbot.Instruction.execute(:report, []) end) == "1, 1, west\n"
   end
 
