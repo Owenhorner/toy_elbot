@@ -1,10 +1,12 @@
 defmodule ToyElbot.ControlSystem.Place do
+  alias ToyElbot.ControlSystem
+
   use GenServer
 
   def at([x, y, direction]) do
     cond do
       valid_placement?(x, y, direction) ->
-        {GenServer.cast(:elbot, {:place, x, y, direction}), "Successfully placed elbot"}
+        {ControlSystem.place(x, y, direction), "Successfully placed elbot"}
       true -> :placement_error
     end
   end

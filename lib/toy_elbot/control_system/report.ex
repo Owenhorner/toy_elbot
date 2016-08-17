@@ -1,10 +1,12 @@
 defmodule ToyElbot.ControlSystem.Report do
+  alias ToyElbot.ControlSystem
+
   def current_position() do
-    display_position(GenServer.call(:elbot, {:report}))
+    display_position(ControlSystem.report)
   end
 
   def elbot_placed? do
-    check_placement(GenServer.call(:elbot, {:report}))
+    check_placement(ControlSystem.report)
   end
 
   defp check_placement(%{x_position: nil, y_position: nil, direction: nil}) do

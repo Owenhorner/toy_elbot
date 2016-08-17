@@ -11,6 +11,30 @@ defmodule ToyElbot.ControlSystem do
     {:ok, _} = GenServer.start(__MODULE__, state)
   end
 
+  def place(x, y, direction) do
+    GenServer.cast(:elbot, {:place, x, y, direction})
+  end
+
+  def move() do
+    GenServer.cast(:elbot, {:move})
+  end
+
+  def kill() do
+    GenServer.stop(:elbot)
+  end
+
+  def report() do
+    GenServer.call(:elbot, {:report})
+  end
+
+  def turn_left() do
+    GenServer.cast(:elbot, {:turn_left})
+  end
+
+  def turn_right() do
+    GenServer.cast(:elbot, {:turn_right})
+  end
+
   ### Server functions ###
 
   def init(state) do

@@ -1,6 +1,8 @@
 defmodule ToyElbot.ControlSystem.Move do
+  alias ToyElbot.ControlSystem
+
   def forward() do
-    {GenServer.cast(:elbot, {:move}), "Successfully moved elbot"}
+    {ControlSystem.move, "Successfully moved elbot"}
   end
 
   def one_space(%{x_position: x, y_position: y, direction: :north}) do

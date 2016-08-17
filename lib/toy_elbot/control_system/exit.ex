@@ -1,5 +1,7 @@
 defmodule ToyElbot.ControlSystem.Exit do
+  alias ToyElbot.ControlSystem
+
   def now() do
-    {GenServer.stop(:elbot), "Successfully killed elbot"}
+    {ControlSystem.kill, "Successfully killed elbot"}
   end
 end
