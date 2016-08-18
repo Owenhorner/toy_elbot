@@ -1,8 +1,6 @@
 defmodule ToyElbot.ControlSystem.Place do
   alias ToyElbot.ControlSystem
 
-  use GenServer
-
   def at([x, y, direction]) do
     cond do
       valid_placement?(x, y, direction) ->
